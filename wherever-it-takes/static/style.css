@@ -1,0 +1,7 @@
+#carouselExampleIndicators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding-top: 1%;
+}

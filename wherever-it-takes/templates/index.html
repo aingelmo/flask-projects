@@ -1,36 +1,77 @@
 {% extends "base.html" %}
 {% block title %}
-    Home
+  Home
 {% endblock title %}
 {% block content %}
-<div class="container">
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div id="carouselExampleIndicators"
+             class="carousel slide"
+             data-bs-ride="true">
+          <div class="carousel-indicators">
+            <button type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1">
+            </button>
+            <button type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://images.unsplash.com/photo-1656972805718-c9817f16c9c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80"
+                   class="d-block w-100"
+                   alt="texture-1">
+            </div>
+            <div class="carousel-item">
+              <img src="https://images.unsplash.com/photo-1656868855324-b1a34101775a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80"
+                   class="d-block w-100"
+                   alt="texture-2">
+            </div>
+            <div class="carousel-item">
+              <img src="https://images.unsplash.com/photo-1656868855324-b1a34101775a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80"
+                   class="d-block w-100"
+                   alt="texture-3">
+            </div>
+          </div>
+          <button class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="col">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque efficitur dictum magna non tincidunt. Sed
+          id quam ac metus semper pulvinar sed vitae tortor. Vestibulum rhoncus dui felis, vitae interdum eros tempor
+          vitae. Vivamus malesuada velit non nisi dignissim pellentesque. Vestibulum ante ipsum primis in faucibus orci
+          luctus et ultrices posuere cubilia curae; Pellentesque maximus sapien ipsum, at feugiat lacus placerat id.
+          Phasellus lacus erat, accumsan id feugiat sit amet, molestie at magna. Praesent venenatis, nulla eu imperdiet
+          egestas, erat quam eleifend magna, eu maximus lacus est a arcu. Morbi sed posuere est. Fusce ullamcorper eros
+          metus, ut suscipit lacus finibus non. Cras metus massa, pharetra sit amet ipsum sit amet, blandit pretium felis.
+          Ut vitae quam ligula. Nunc tincidunt ligula magna, tristique tempor leo convallis et. Duis imperdiet augue id ex
+          ullamcorper rutrum. Praesent rhoncus tincidunt magna.
+        </p>
+      </div>
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="https://images.unsplash.com/photo-1656972805718-c9817f16c9c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="texture-1">
-      </div>
-      <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1656868855324-b1a34101775a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="texture-2">
-      </div>
-      <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1656868855324-b1a34101775a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="texture-3">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
-</div>
-
-
 {% endblock content %}

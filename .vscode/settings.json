@@ -5,4 +5,7 @@
     "emmet.includeLanguages": {
         "jinja-html": "html"
     },
+    "[jinja-html]": {
+        "editor.defaultFormatter": "monosans.djlint"
+    },
 }

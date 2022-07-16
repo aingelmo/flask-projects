@@ -43,12 +43,18 @@ def login():
             db.session.add(login_data)
             db.session.commit()
 
-            if username != "admin" or password != "admin":
-                error = "Invalid Credentials. Please try again."
-                return render_template("login.html", error=error)
-            else:
+            if username == "admin" and password == "admin":
+                session["admin"] = True
                 session["username"] = username
                 return redirect(url_for("user"))
+
+            elif username == "andres" and password == "andres":
+                session["username"] = username
+                return redirect(url_for("user"))
+
+            else:
+                error = "Invalid Credentials. Please try again."
+                return render_template("login.html", error=error)
 
         else:
             return render_template("login.html")
@@ -58,6 +64,8 @@ def login():
 def logout():
     flash("You've been signed out!")
     session.pop("username")
+    if "admin" in session:
+        session.pop("admin")
     return redirect(url_for("login"))
 
 
@@ -65,7 +73,12 @@ def logout():
 def user():
     if "username" in session:
         username = session["username"]
-        return render_template("user.html", user=username, admin=True)
+
+        if "admin" in session:
+            if session["admin"]:
+                return render_template("user.html", user=username, admin=True)
+        else:
+            return render_template("user.html", user=username, admin=False)
 
     else:
         return redirect(url_for("login"))
@@ -73,7 +86,7 @@ def user():
 
 @app.route("/view")
 def view():
-    if "username" in session:
+    if session["admin"]:
         return render_template("view.html", values=Users.query.all(), admin=True)
 
     else:

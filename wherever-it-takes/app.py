@@ -6,6 +6,22 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 app.permanent_session_lifetime = timedelta(minutes=5)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.sqlite3"
+
+db = SQLAlchemy(app)
+
+
+class Users(db.Model):
+    id = db.Column("student_id", db.Integer, primary_key=True)
+    username = db.Column("username", db.String(50))
+    password = db.Column("password", db.String(50))
+
+    def __init__(self, username, password) -> None:
+        self.username = username
+        self.password = password
+
+
+db.create_all()
 
 
 @app.route("/")
@@ -22,6 +38,10 @@ def login():
         if request.method == "POST":
             username = request.form["username"]
             password = request.form["password"]
+
+            login_data = Users(username, password)
+            db.session.add(login_data)
+            db.session.commit()
 
             if username != "admin" or password != "admin":
                 error = "Invalid Credentials. Please try again."
@@ -45,9 +65,19 @@ def logout():
 def user():
     if "username" in session:
         username = session["username"]
-        return render_template("user.html", user=username)
+        return render_template("user.html", user=username, admin=True)
 
     else:
+        return redirect(url_for("login"))
+
+
+@app.route("/view")
+def view():
+    if "username" in session:
+        return render_template("view.html", values=Users.query.all(), admin=True)
+
+    else:
+        flash("Not enough rights to see it!")
         return redirect(url_for("login"))
 
 

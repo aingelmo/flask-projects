@@ -1,4 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    {{values}}
+{% for item in values %}
+    {{loop.index}} {{item.username}} {{item.password}} <br>
+{% endfor %}
 {% endblock content %}

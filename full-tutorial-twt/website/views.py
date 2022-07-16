@@ -2,7 +2,6 @@ import json
 
 from flask import Blueprint, flash, jsonify, render_template, request
 from flask_login import current_user, login_required
-from importlib_metadata import import_module
 
 from . import db
 from .models import Note

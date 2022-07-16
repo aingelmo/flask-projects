@@ -39,9 +39,12 @@ def login():
             username = request.form["username"]
             password = request.form["password"]
 
-            login_data = Users(username, password)
-            db.session.add(login_data)
-            db.session.commit()
+            found_username = Users.query.filter_by(username=username).first()
+
+            if not found_username:
+                login_data = Users(username, password)
+                db.session.add(login_data)
+                db.session.commit()
 
             if username == "admin" and password == "admin":
                 session["admin"] = True
@@ -86,8 +89,9 @@ def user():
 
 @app.route("/view")
 def view():
-    if session["admin"]:
-        return render_template("view.html", values=Users.query.all(), admin=True)
+    if "admin" in session:
+        if session["admin"]:
+            return render_template("view.html", values=Users.query.all(), admin=True)
 
     else:
         flash("Not enough rights to see it!")

@@ -63,15 +63,6 @@ def login():
             return render_template("login.html")
 
 
-@app.route("/logout")
-def logout():
-    flash("You've been signed out!")
-    session.pop("username")
-    if "admin" in session:
-        session.pop("admin")
-    return redirect(url_for("login"))
-
-
 @app.route("/user")
 def user():
     if "username" in session:
@@ -91,11 +82,22 @@ def user():
 def view():
     if "admin" in session:
         if session["admin"]:
-            return render_template("view.html", values=Users.query.all(), admin=True)
+            return render_template(
+                "view.html", values=Users.query.all(), admin=True, user=True
+            )
 
     else:
         flash("Not enough rights to see it!")
         return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    flash("You've been signed out!")
+    session.pop("username")
+    if "admin" in session:
+        session.pop("admin")
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

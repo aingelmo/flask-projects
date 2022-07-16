@@ -1,4 +1,12 @@
 {% extends "base.html" %}
+{% block navbar %}
+    <li class="nav-item">
+        <a class="nav-link" href="/logout">Sign Out</a>
+    </li>
+{% endblock navbar %}
 {% block content %}
-    {{user}}
-{% endblock content %}
+    <h2>Hello {{user}}!</h2>
+    <div class="text-center">
+        <img src="https://i.pinimg.com/originals/80/d3/64/80d364e09d31fcba8af274926d4332ff.jpg" class="rounded" alt="dog-1">
+    </div>
+{% endblock content %}  

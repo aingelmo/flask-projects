@@ -3,7 +3,8 @@
     View Data
 {% endblock title %}
 {% block content %}
-{% for item in values %}
-    {{loop.index}} --- {{item.username}} --- {{item.password}} <br>
-{% endfor %}
+    {% for item in values %}
+        {{ loop.index }} --- {{ item.username }} --- {{ item.password }}
+        <br>
+    {% endfor %}
 {% endblock content %}

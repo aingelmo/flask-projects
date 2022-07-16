@@ -1,6 +1,8 @@
+import email
 from datetime import timedelta
 
-from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask import (Flask, flash, redirect, render_template, request, session,
+                   url_for)
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -15,10 +17,12 @@ class Users(db.Model):
     id = db.Column("student_id", db.Integer, primary_key=True)
     username = db.Column("username", db.String(50))
     password = db.Column("password", db.String(50))
+    email = db.Column("email", db.String(50))
 
-    def __init__(self, username, password) -> None:
+    def __init__(self, username, password, email) -> None:
         self.username = username
         self.password = password
+        self.email = email
 
 
 db.create_all()
@@ -38,11 +42,12 @@ def login():
         if request.method == "POST":
             username = request.form["username"]
             password = request.form["password"]
+            email = request.form["email"]
 
             found_username = Users.query.filter_by(username=username).first()
-
+            
             if not found_username:
-                login_data = Users(username, password)
+                login_data = Users(username, password, email)
                 db.session.add(login_data)
                 db.session.commit()
 
@@ -98,6 +103,7 @@ def logout():
     if "admin" in session:
         session.pop("admin")
     return redirect(url_for("login"))
+
 
 
 if __name__ == "__main__":

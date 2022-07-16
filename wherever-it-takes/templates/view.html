@@ -3,8 +3,22 @@
     View Data
 {% endblock title %}
 {% block content %}
-    {% for item in values %}
-        {{ loop.index }} --- {{ item.username }} --- {{ item.password }}
-        <br>
-    {% endfor %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User</th>
+                <th scope="col">Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in values %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.password }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock content %}

@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% block title %}
+    View Data
+{% endblock title %}
 {% block content %}
 {% for item in values %}
-    {{loop.index}} {{item.username}} {{item.password}} <br>
+    {{loop.index}} --- {{item.username}} --- {{item.password}} <br>
 {% endfor %}
 {% endblock content %}

@@ -9,6 +9,7 @@
                 <th scope="col">#</th>
                 <th scope="col">User</th>
                 <th scope="col">Password</th>
+                <th scope="col">Email</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,7 @@
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ item.username }}</td>
                     <td>{{ item.password }}</td>
+                    <td>{{ item.email }}</td>
                 </tr>
             {% endfor %}
         </tbody>

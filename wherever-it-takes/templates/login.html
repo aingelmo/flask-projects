@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}
+    Login
+{% endblock title %}
+{% block content %}
+    {# Print all the flash messages retrieved from app.py#}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}{{ message }}{% endfor %}
+        {% endif %}
+    {% endwith %}
+    {# Prints the error message if the auth is invalid #}
+    {{ error }}
+    {# This is the login form #}
+    <form class="row g-3" id="login-buttons"method="post">
+        <div class="col-auto">
+            <label for="inputUsername" class="visually-hidden">Username</label>
+            <input type="text"
+                   class="form-control"
+                   id="inputUsername"
+                   placeholder="Username"
+                   name="username"/>
+        </div>
+        <div class="col-auto">
+            <label for="inputPassword" class="visually-hidden">Password</label>
+            <input type="password"
+                   class="form-control"
+                   id="inputPassword"
+                   placeholder="Password"
+                   name="password"/>
+        </div>
+        <div class="col-auto">
+            <label for="inputEmail" class="visually-hidden">Email</label>
+            <input type="text"
+                   class="form-control"
+                   id="inputEmail"
+                   placeholder="example@example.com"
+                   name="email"/>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        </div>
+    </form>
+{% endblock content %}

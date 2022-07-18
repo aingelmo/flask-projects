@@ -1,7 +1,8 @@
 import email
 from datetime import timedelta
 
-from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask import (Flask, flash, redirect, render_template, request, session,
+                   url_for)
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -44,9 +45,9 @@ def login():
             email = request.form["email"]
 
             found_username = Users.query.filter_by(username=username).first()
-
+            
             if not found_username:
-                login_data = Users(username, password)
+                login_data = Users(username, password, email)
                 db.session.add(login_data)
                 db.session.commit()
 
@@ -65,15 +66,6 @@ def login():
 
         else:
             return render_template("login.html")
-
-
-@app.route("/logout")
-def logout():
-    flash("You've been signed out!")
-    session.pop("username")
-    if "admin" in session:
-        session.pop("admin")
-    return redirect(url_for("login"))
 
 
 @app.route("/user")
@@ -95,7 +87,9 @@ def user():
 def view():
     if "admin" in session:
         if session["admin"]:
-            return render_template("view.html", values=Users.query.all(), admin=True)
+            return render_template(
+                "view.html", values=Users.query.all(), admin=True, user=True
+            )
 
     else:
         flash("Not enough rights to see it!")
@@ -109,6 +103,7 @@ def logout():
     if "admin" in session:
         session.pop("admin")
     return redirect(url_for("login"))
+
 
 
 if __name__ == "__main__":

@@ -8,10 +8,21 @@
             {% for message in messages %}{{ message }}{% endfor %}
         {% endif %}
     {% endwith %}
-    <h2>Hello {{ user }}!</h2>
-    <div class="text-center">
-        <img src="https://i.pinimg.com/originals/80/d3/64/80d364e09d31fcba8af274926d4332ff.jpg"
-             class="rounded"
-             alt="dog-1">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Hello {{ user }}!</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque efficitur dictum magna non tincidunt. Sed id quam ac metus semper pulvinar sed vitae tortor. Vestibulum rhoncus dui felis, vitae interdum eros tempor vitae. Vivamus malesuada velit non nisi dignissim pellentesque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque maximus sapien ipsum, at feugiat lacus placerat id. Phasellus lacus erat, accumsan id feugiat sit amet, molestie at magna. Praesent venenatis, nulla eu imperdiet egestas, erat quam eleifend magna, eu maximus lacus est a arcu. Morbi sed posuere est. Fusce ullamcorper eros metus, ut suscipit lacus finibus non. Cras metus massa, pharetra sit amet ipsum sit amet, blandit pretium felis. Ut vitae quam ligula. Nunc tincidunt ligula magna, tristique tempor leo convallis et. Duis imperdiet augue id ex ullamcorper rutrum. Praesent rhoncus tincidunt magna.
+                </p>
+            </div>
+            <div class="col" id="my_page_img">
+                <img src="https://www.nuevapescanova.com/nuevapescanova/wp-content/uploads/2018/10/Rodolfo_Logo-Pescanova-001-1.jpg"
+                     class="rounded"
+                     alt="rodolfo-pescanova"
+                     height="400"
+                     width="565"/>
+            </div>
+        </div>
     </div>
 {% endblock content %}

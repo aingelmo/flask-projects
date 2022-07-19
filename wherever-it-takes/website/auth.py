@@ -4,10 +4,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from . import db
 from .models import Users
 
-auth = Blueprint("auth", __name__, url_prefix="/auth")
+bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 
-@auth.route("/register", methods=["POST", "GET"])
+@bp.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
         user = request.form.get("username")
@@ -32,12 +32,12 @@ def register():
             )
             db.session.add(new_user)
             db.session.commit()
-            
+
         flash(error)
-        
+
     return render_template("auth/register.html")
 
 
-@auth.route("/login")
+@bp.route("/login")
 def login():
     pass

@@ -1,4 +1,4 @@
-import os
+from os import path
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -12,6 +12,7 @@ def create_app():
     app.config.from_mapping(
         SECRET_KEY="dev", SQLALCHEMY_DATABASE_URI=f"sqlite:///{DB_NAME}"
     )
+    db.init_app(app)
 
     from .auth import bp
 
@@ -19,10 +20,16 @@ def create_app():
 
     from .models import Users
 
-    db.init_app(app)
+    create_database(app)
 
     @app.route("/hello")
     def hello():
         return "Hello World"
 
     return app
+
+
+def create_database(app):
+    if not path.exists("website/" + DB_NAME):
+        db.create_all(app=app)
+        print("Created Database!")

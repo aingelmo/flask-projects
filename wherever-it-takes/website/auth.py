@@ -33,7 +33,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
 
-        flash(error)
+        flash(error, category="error")
 
     return render_template("auth/register.html")
 

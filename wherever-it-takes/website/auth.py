@@ -41,6 +41,8 @@ def register():
 
             flash("Account successfully created!", category="success")
 
+            return redirect(url_for("user.user"))
+
         else:
             flash(error, category="error")
 
@@ -55,8 +57,6 @@ def login():
 
         user = Users.query.filter_by(username=username).first()
 
-        print(username)
-
         error = None
 
         if user is None:
@@ -67,7 +67,7 @@ def login():
         if error is None:
             login_user(user, remember=True)
             flash("Logged in successfully!", category="success")
-            return redirect(url_for("auth.register"))
+            return redirect(url_for("user.user"))
 
         else:
             flash(error, category="error")
@@ -77,6 +77,6 @@ def login():
 
 @bp.route("logout")
 def logout():
-    logout_user
+    logout_user()
     flash("Logged out successfully!", category="success")
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("views.home"))

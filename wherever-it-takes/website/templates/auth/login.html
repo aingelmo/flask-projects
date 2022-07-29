@@ -4,30 +4,39 @@
 {% endblock title %}
 {% block content %}
     <div class="container px-3">
-        <form method="post">
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-                <input type="text" id="usernameInput" class="form-control"name="username" />
-                <label class="form-label" for="usernameInput">Username</label>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://picsum.photos/id/204/800/400"
+                     class="card-img-top"
+                     alt="...">
             </div>
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-                <input type="password"
-                       id="passwordInput"
-                       class="form-control"
-                       name="password"/>
-                <label class="form-label" for="passwordInput">Password</label>
+            <div class="col-md-6 mt-5">
+                <form method="post">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="usernameInput" class="form-control"name="username" />
+                        <label class="form-label" for="usernameInput">Username</label>
+                    </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password"
+                               id="passwordInput"
+                               class="form-control"
+                               name="password"/>
+                        <label class="form-label" for="passwordInput">Password</label>
+                    </div>
+                    <!-- Submit button -->
+                    <div class="d-grid gap-2 mx-5 mb-2">
+                        <button class="btn btn-primary" type="submit">Sign in</button>
+                    </div>
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>
+                            Not a member? <a href="{{ url_for('auth.register') }}">Register</a>
+                        </p>
+                    </div>
+                </form>
             </div>
-            <!-- Submit button -->
-            <div class="d-grid gap-2 mx-5 mb-2">
-                <button class="btn btn-primary" type="submit">Sign in</button>
-            </div>
-            <!-- Register buttons -->
-            <div class="text-center">
-                <p>
-                    Not a member? <a href="{{ url_for('auth.register') }}">Register</a>
-                </p>
-            </div>
-        </form>
+        </div>
     </div>
 {% endblock content %}

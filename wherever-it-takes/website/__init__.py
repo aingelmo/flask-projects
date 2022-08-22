@@ -1,5 +1,6 @@
 from os import path
 
+from dash_app import create_dash_application
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
@@ -36,6 +37,8 @@ def create_app():
     @app.route("/hello")
     def hello():
         return "Hello World"
+
+    create_dash_application(app)
 
     return app
 

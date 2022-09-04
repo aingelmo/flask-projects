@@ -1,41 +1,22 @@
 {% extends "base.html" %}
 {% block title %}
-Register
+    Register
 {% endblock title %}
 {% block content %}
-    <form method="post">
+    <form class="mx-5" method="post">
+        {{ form.hidden_tag() }}
         <div class="mb-3">
-            <label for="usernameInput" class="form-label">Username</label>
-            <input type="text"
-                   class="form-control"
-                   id="usernameInput"
-                   placeholder="Type username"
-                   name="username"/>
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control") }}
         </div>
         <div class="mb-3">
-            <label for="emailInput" class="form-label">Email address</label>
-            <input type="email"
-                   class="form-control"
-                   id="emailInput"
-                   placeholder="name@example.com"
-                   name="email"/>
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
         </div>
         <div class="mb-3">
-            <label for="passwordInput" class="form-label">Password</label>
-            <input type="password"
-                   class="form-control"
-                   id="passwordInput"
-                   placeholder="Type password"
-                   name="password"/>
+            {{ form.password_confirm.label(class="form-label") }}
+            {{ form.password_confirm(class="form-control") }}
         </div>
-        <div class="mb-3">
-            <label for="passwordInputConfirmation" class="form-label">Password (Confirm)</label>
-            <input type="password"
-                   class="form-control"
-                   id="passwordInputConfirmation"
-                   placeholder="Type password"
-                   name="password_confirmation"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ form.submit(class="btn btn-primary") }}
     </form>
 {% endblock content %}

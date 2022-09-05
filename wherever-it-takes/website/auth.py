@@ -1,11 +1,9 @@
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import Blueprint, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required, login_user, logout_user
-from werkzeug.security import check_password_hash, generate_password_hash
 
 from website.forms import LoginForm, RegistrationForm
-from website.models import Users
-
-from .models import Users, db
+from website.models import Users, db
+from website.views import get_top_menu_items
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -13,7 +11,7 @@ bp = Blueprint("auth", __name__, url_prefix="/auth")
 @bp.route("/register", methods=["POST", "GET"])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for("views.home"))
+        return redirect(url_for("views.index"))
 
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -22,15 +20,17 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        return redirect(url_for("views.home"))
+        return redirect(url_for("views.index"))
 
-    return render_template("auth/register.html", form=form)
+    return render_template(
+        "auth/register.html", form=form, top_menu_items=get_top_menu_items("/")
+    )
 
 
 @bp.route("/login", methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("views.home"))
+        return redirect(url_for("views.index"))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -40,11 +40,13 @@ def login():
 
         login_user(user, remember=form.remember_me.data)
 
-    return render_template("auth/login.html", form=form)
+    return render_template(
+        "auth/login.html", form=form, top_menu_items=get_top_menu_items("/")
+    )
 
 
 @bp.route("logout")
 def logout():
     logout_user()
     flash("Logged out successfully!", category="success")
-    return redirect(url_for("views.home"))
+    return redirect(url_for("views.index"))

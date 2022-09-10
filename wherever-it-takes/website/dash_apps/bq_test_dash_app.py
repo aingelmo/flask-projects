@@ -1,10 +1,10 @@
 """Sample callback Dash app"""
-import dash_table as dt
 import pandas as pd
 import pandas_gbq
 import plotly.express as px
 import plotly.graph_objects as go
-from dash import dcc, html
+from config import CREDS_DIR
+from dash import dash_table, dcc, html
 from dash.dependencies import Input, Output
 from google.oauth2 import service_account
 from website.dash_apps import create_dash_app
@@ -14,9 +14,7 @@ URL_RULE = "/bq-test"
 # dash internal route prefix, must be start and end with "/"
 URL_BASE_PATHNAME = "/dash/bq-test-app/"
 
-credentials = service_account.Credentials.from_service_account_file(
-    "/home/andres/projects/web/flask-projects/wherever-it-takes/bq-private-key.json"
-)
+credentials = service_account.Credentials.from_service_account_file(CREDS_DIR)
 
 queries = {
     "top_types": "SELECT type, COUNT(*) count FROM hacker_news_copy.full_201510 GROUP BY 1 ORDER BY 2 LIMIT 100",
@@ -50,7 +48,7 @@ def create_dash(server):
         dfs[query_name] = df
 
     table_label = html.Label("Hacker News BigQuery Public Dataset")
-    table = dt.DataTable(
+    table = dash_table.DataTable(
         id="top_types-table",
         columns=[{"name": i, "id": i} for i in dfs["top_types"].columns],
         data=dfs["top_types"].to_dict("records"),

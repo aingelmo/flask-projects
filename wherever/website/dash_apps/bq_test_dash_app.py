@@ -3,10 +3,10 @@ import pandas as pd
 import pandas_gbq
 import plotly.express as px
 import plotly.graph_objects as go
-from config import CREDS_DIR
 from dash import dash_table, dcc, html
 from dash.dependencies import Input, Output
 from google.oauth2 import service_account
+from settings import CREDS_DIR
 from website.dash_apps import create_dash_app
 
 # endpoint of this page

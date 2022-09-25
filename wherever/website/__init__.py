@@ -2,7 +2,6 @@ import importlib
 import os
 from os import path
 
-import dash
 from flask import Flask
 from flask.helpers import get_root_path
 

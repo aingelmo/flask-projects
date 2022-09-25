@@ -4,5 +4,5 @@ from oauthlib.oauth2 import WebApplicationClient
 from settings import GOOGLE_CLIENT_ID
 
 db = SQLAlchemy()
-login = LoginManager()
+login_manager = LoginManager()
 client = WebApplicationClient(GOOGLE_CLIENT_ID)

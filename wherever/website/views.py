@@ -5,7 +5,7 @@ base_app = Blueprint("views", __name__)
 
 top_menus = [
     {"path": "/", "title": "Home"},
-    {"path": "/auth/login", "title": "Login"},
+    {"path": "/auth/login-test", "title": "Login"},
     {"path": "/auth/register", "title": "Register"},
 ]
 

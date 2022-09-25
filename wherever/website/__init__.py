@@ -1,11 +1,11 @@
 import importlib
 import os
-from os import path
 
+import settings
 from flask import Flask
 from flask.helpers import get_root_path
 
-DB_NAME = "database.db"
+DB_NAME = settings.DB_NAME
 
 
 def create_app():
@@ -39,13 +39,16 @@ def register_dashapp(app):
 
 
 def register_extensions(app):
-    from website.extensions import db, login
+    from website.extensions import db, login_manager
 
     db.init_app(app)
-    login.login_view = "auth.login"
-    login.init_app(app)
 
-    if not path.exists("website/" + DB_NAME):
+    from website.models import GoogleUsers, Users
+
+    login_manager.login_view = "auth.login"
+    login_manager.init_app(app)
+
+    if not os.path.exists("website/" + DB_NAME):
         db.create_all(app=app)
         print("Created Database!")
 

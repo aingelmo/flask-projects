@@ -3,6 +3,27 @@
     {% block title %}
         Google Login with Flask
     {% endblock title %}
+    {% block stylesheet %}
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+            .info {
+                margin: 0;
+                padding-left: 5px;
+                border: solid gold 3px;
+                background-color: beige;
+                font-family: monospace;
+            }
+            .info p {
+                margin:  0;
+            }
+            .info p:first-child {
+                font-size: 15px;
+                padding-bottom: 10px;
+            }
+        </style>
+    {% endblock stylesheet %}
     {% block content %}
         <body>
             <h3>Hello world! This is a Flask application.</h3>

@@ -1,7 +1,6 @@
 from flask import Blueprint, flash, redirect, render_template, url_for
 from flask_dance.consumer import oauth_authorized
-from flask_dance.consumer.storage.sqla import SQLAlchemyStorage
-from flask_login import current_user, login_required, login_user, logout_user
+from flask_login import current_user, login_user, logout_user
 from sqlalchemy.orm.exc import NoResultFound
 
 from website.forms import LoginForm, RegistrationForm
@@ -15,6 +14,7 @@ bp = Blueprint("auth", __name__, url_prefix="/auth")
 @bp.route("/register", methods=["POST", "GET"])
 def register():
     if current_user.is_authenticated:
+        flash("Already registered.", category="warning")
         return redirect(url_for("views.index"))
 
     form = RegistrationForm()
@@ -34,6 +34,7 @@ def register():
 @bp.route("/login", methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated:
+        flash("Already logged in.", category="warning")
         return redirect(url_for("views.index"))
 
     form = LoginForm()

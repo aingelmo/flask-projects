@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_dance.contrib.google import google
 from flask_login import current_user
 
 base_app = Blueprint("views", __name__)
@@ -13,7 +14,18 @@ top_menus = [
 @base_app.route("/")
 def index():
     """Landing Page."""
-    return render_template("views/index.html", top_menu_items=get_top_menu_items("/"))
+    google_data = None
+    user_info_endpoint = "/oauth2/v2/userinfo"
+
+    if current_user.is_authenticated and google.authorized:
+        google_data = google.get(user_info_endpoint).json()
+
+    return render_template(
+        "views/test.html",
+        top_menu_items=get_top_menu_items("/"),
+        google_data=google_data,
+        fetch_url=google.base_url + user_info_endpoint,
+    )
 
 
 def get_top_menu_items(current_path: str = "/"):

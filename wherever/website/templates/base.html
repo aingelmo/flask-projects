@@ -20,6 +20,19 @@
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
     </head>
     {% include "header.html" %}
+    {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == "error" %}
+                    <div class="alert alert-danger" role="alert">{{ message }}</div>
+                {% elif category == "success" %}
+                    <div class="alert alert-success" role="alert">{{ message }}</div>
+                {% elif category == "warning" %}
+                    <div class="alert alert-warning" role="alert">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <body>
         <main class="my-5">
             {% block content %}

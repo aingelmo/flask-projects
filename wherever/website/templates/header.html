@@ -1,14 +1,6 @@
 <header>
     <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand"
-               href="https://aingelmo.github.io/"
-               target="_blank">
-                <img src="{{ url_for('static', filename='logos/AIP-logos_white.png') }}"
-                     alt=""
-                     width="30"
-                     height="24"/>
-            </a>
             <button class="navbar-toggler"
                     type="button"
                     data-bs-toggle="collapse"
@@ -25,15 +17,4 @@
             </div>
         </div>
     </nav>
-    {% with messages=get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                {% if category == "error" %}
-                    <div class="alert alert-danger" role="alert">{{ message }}</div>
-                {% elif category == "success" %}
-                    <div class="alert alert-success" role="alert">{{ message }}</div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
 </header>

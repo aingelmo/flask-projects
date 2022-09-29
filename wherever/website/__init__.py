@@ -19,7 +19,7 @@ def create_app():
 
     register_extensions(app)
     register_blueprints(app)
-    # register_dashapp(app)
+    register_dashapp(app)
 
     return app
 

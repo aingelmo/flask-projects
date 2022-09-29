@@ -19,7 +19,7 @@ def create_app():
 
     register_extensions(app)
     register_blueprints(app)
-    register_dashapp(app)
+    # register_dashapp(app)
 
     return app
 
@@ -43,7 +43,7 @@ def register_extensions(app):
 
     db.init_app(app)
 
-    from website.models import GoogleUsers, Users
+    from website.models import OAuth, User
 
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
@@ -54,8 +54,9 @@ def register_extensions(app):
 
 
 def register_blueprints(app):
-    from website import auth, user, views
+    from website import auth, google, user, views
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(views.base_app)
     app.register_blueprint(user.bp)
+    app.register_blueprint(google.bp)

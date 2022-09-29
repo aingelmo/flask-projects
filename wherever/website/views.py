@@ -6,7 +6,8 @@ base_app = Blueprint("views", __name__)
 
 top_menus = [
     {"path": "/", "title": "Home"},
-    {"path": "/auth/login-test", "title": "Login"},
+    {"path": "/auth/login", "title": "Login"},
+    {"path": "/auth/google", "title": "Google Login"},
     {"path": "/auth/register", "title": "Register"},
 ]
 
@@ -14,8 +15,16 @@ top_menus = [
 @base_app.route("/")
 def index():
     """Landing Page."""
+    return render_template(
+        "views/index.html",
+        top_menu_items=get_top_menu_items("/"),
+    )
+
+
+@base_app.route("/google")
+def google_show_data():
     google_data = None
-    user_info_endpoint = "/oauth2/v2/userinfo"
+    user_info_endpoint = "oauth2/v2/userinfo"
 
     if current_user.is_authenticated and google.authorized:
         google_data = google.get(user_info_endpoint).json()

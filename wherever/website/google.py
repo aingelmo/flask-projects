@@ -12,4 +12,5 @@ bp = make_google_blueprint(
     storage=SQLAlchemyStorage(OAuth, db.session, user=current_user),
     login_url="/auth/google",
     redirect_to="views.google_show_data",
+    offline=True
 )

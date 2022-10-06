@@ -7,8 +7,8 @@ base_app = Blueprint("views", __name__)
 top_menus = [
     {"path": "/", "title": "Home"},
     {"path": "/auth/login", "title": "Login"},
-    {"path": "/auth/google", "title": "Google"},
     {"path": "/auth/register", "title": "Register"},
+    {"path": "/auth/logout", "title": "Logout"},
     {"path": "/dash/bq-test-app/", "title": "Dash Test"},
 ]
 

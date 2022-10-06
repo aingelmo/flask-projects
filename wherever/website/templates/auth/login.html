@@ -2,6 +2,8 @@
 {% block title %}
     Login
 {% endblock title %}
+{% block stylesheet %}
+{% endblock stylesheet %}
 {% block content %}
     <div class="container px-3">
         <div class="row">
@@ -21,15 +23,27 @@
                         {{ form.password.label(class="form-label") }}
                         {{ form.password(class="form-control") }}
                     </div>
-                    <div class="d-grid gap-2 mx-5 mb-2">{{ form.submit(class="btn btn-primary") }}</div>
+                    <div class="d-grid gap-2 mx-5 mb-2">
+                        {{ form.submit(class="btn btn-primary") }}
+                        <a class="btn btn-outline-dark"
+                           href="/auth/google"
+                           target="_blank"
+                           role="button"
+                           style="text-transform:none">
+                            <img width="20px"
+                                 style="margin-bottom:3px; margin-right:5px"
+                                 alt="Google sign-in"
+                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
+                            Login with Google
+                        </a>
+                    </div>
                     <!-- Register buttons -->
                     <div class="text-center">
                         <p>
                             Not a member? <a href="{{ url_for('auth.register') }}">Register</a>
                         </p>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-{% endblock content %}
+    {% endblock content %}
